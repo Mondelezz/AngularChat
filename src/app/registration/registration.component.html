@@ -1,0 +1,78 @@
+<div style="
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+">
+
+  <form style="
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid rgb(36, 186, 255);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(36, 186, 255);
+  " (ngSubmit)="onSubmit()">
+
+    <div style="margin-bottom: 15px; color: aqua;">     
+      <input
+        type="text"
+        id="name"
+        placeholder="Name"
+        name="name"
+        [(ngModel)]="user.name"
+        style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 5px;"
+        [ngClass]="{ 'error-border': !user.name && submitted }"
+      />
+    </div>
+
+    <div style="margin-bottom: 15px; color: aqua;">      
+      <input
+        type="text"
+        id="phoneNumber"
+        placeholder="Phone number"
+        name="phoneNumber"
+        [(ngModel)]="user.phoneNumber"
+        style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 5px;"
+        [ngClass]="{ 'error-border': !user.phoneNumber && submitted }"
+      />
+    </div>
+
+    <div style="margin-bottom: 15px; color: aqua;">
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        name="password"
+        [(ngModel)]="user.password"
+        style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 5px;"
+        [ngClass]="{ 'error-border': !user.password && submitted }"
+      />
+    </div>
+
+    <div style="margin-bottom: 15px; color: aqua;">
+      <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm password"
+        name="confirmPassword"
+        [(ngModel)]="user.confirmPassword"
+        style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 5px;"
+        [ngClass]="{ 'error-border': !user.confirmPassword && submitted }"
+      />
+    </div>
+
+    <div>
+      <button type="submit" style="
+        background-color: rgb(36, 186, 255);
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      ">Submit</button>
+    </div>
+
+  </form>
+
+</div>

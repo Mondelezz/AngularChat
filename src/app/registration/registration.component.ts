@@ -2,20 +2,18 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { RegistrationComponent } from './registration/registration.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-reg',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FormsModule, RegistrationComponent],
-  templateUrl: './registration/registration.component.html',
-  styleUrl: './registration/registration.component.scss'
+  imports: [CommonModule, RouterOutlet, FormsModule],
+  templateUrl: './registration.component.html',
+  styleUrl: './registration.component.scss'
 })
-
-export class AppComponent
-{
-  title = 'Registration';
-  user: any = 
+export class RegistrationComponent
+ {
+    title = 'Registration';
+    user: any = 
     {
       name: '',
       phoneNumber: '',
@@ -28,4 +26,4 @@ export class AppComponent
     {
       this.submitted = true;
     }
-  }
+}
