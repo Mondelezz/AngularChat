@@ -1,78 +1,89 @@
 <div style="
+  background-color: rgb(12, 16, 17);
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   font-family: 'Arial', sans-serif;
 ">
-
   <form style="
+    background-color: rgb(217, 235, 235);
     max-width: 400px;
     padding: 20px;
     border: 1px solid rgb(36, 186, 255);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(36, 186, 255);
+    display: flex; /* Добавляем стиль flex для формы */
+    flex-direction: column; /* Столбцы для выравнивания вертикально */
   " (ngSubmit)="onSubmit()">
 
-    <div style="margin-bottom: 15px; color: aqua;">     
+    <h1 style="font-family: 'Arial', sans-serif;color: rgb(102, 176, 190);">Registration</h1>
+    
+    <div class="input-container">     
       <input
         type="text"
         id="name"
         placeholder="Name"
         name="name"
         [(ngModel)]="user.name"
-        style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 5px;"
+        class="input"
         [ngClass]="{ 'error-border': !user.name && submitted }"
+        style="padding: 8px; box-sizing: border-box; border-radius: 5px;"
       />
+      <label for="name">Name</label>
     </div>
 
-    <div style="margin-bottom: 15px; color: aqua;">      
+    <div class="input-container">      
       <input
         type="text"
         id="phoneNumber"
         placeholder="Phone number"
         name="phoneNumber"
         [(ngModel)]="user.phoneNumber"
-        style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 5px;"
+        class="input"
         [ngClass]="{ 'error-border': !user.phoneNumber && submitted }"
+        style="padding: 8px; box-sizing: border-box; border-radius: 5px;"
       />
+      <label for="phoneNumber">Phone number</label>
     </div>
 
-    <div style="margin-bottom: 15px; color: aqua;">
+    <div class="input-container">
       <input
         type="password"
         id="password"
         placeholder="Password"
         name="password"
         [(ngModel)]="user.password"
-        style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 5px;"
+        class="input"
         [ngClass]="{ 'error-border': !user.password && submitted }"
+        style="padding: 8px; box-sizing: border-box; border-radius: 5px;"
       />
+      <label for="password">Password</label>
     </div>
 
-    <div style="margin-bottom: 15px; color: aqua;">
+    <div class="input-container">
       <input
         type="password"
         id="confirmPassword"
         placeholder="Confirm password"
         name="confirmPassword"
         [(ngModel)]="user.confirmPassword"
-        style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 5px;"
+        class="input"
         [ngClass]="{ 'error-border': !user.confirmPassword && submitted }"
+        style="padding: 8px; box-sizing: border-box; border-radius: 5px;"
       />
+      <label for="confirmPassword">Confirm password</label>
     </div>
 
-    <div>
-      <button type="submit" style="
-        background-color: rgb(36, 186, 255);
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      ">Submit</button>
-    </div>
+    <button type="submit" style="
+      background-color: rgb(15, 177, 252);
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px; /* Небольшой отступ между полями и кнопкой */
+    " (click)="onSubmit()">Submit</button>
 
   </form>
-
 </div>
