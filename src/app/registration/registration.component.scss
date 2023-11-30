@@ -40,3 +40,13 @@
     border-radius: 5px; /* Добавляем скругление границы */
     z-index: -1; /* Установить z-index ниже, чтобы находилось под названием */
   }
+  
+  button[type="submit"] {
+    transition: all 0.8s ease;
+  }
+  
+  button[type="submit"]:active {
+    background-color: rgb(15, 44, 60);
+    transform: translateY(7px);
+  }
+   
