@@ -1,43 +1,50 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
-export interface User
-{
-      userName: string,
-      phoneNumber: string,
-      password: string,
-      confirmPassword: string,
-}
 @Component({
   selector: 'app-reg',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FormsModule],
+  imports: [CommonModule, RouterOutlet, FormsModule, ReactiveFormsModule],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
 })
 export class RegistrationComponent
  {
-  constructor(private http: HttpClient){}
   title = 'Registration';
-  user: User = 
-    {
-      userName: '',
-      phoneNumber: '',
-      password: '',
-      confirmPassword: '',
-    };
+  registrationForm: FormGroup;
+  constructor(private http: HttpClient)
+  {
+    this.registrationForm = new FormGroup(
+      {
+        userName: new FormControl(''),
+        phoneNumber: new FormControl(''),
+        password: new FormControl(''),
+        confirmPassword: new FormControl('')
+      }
+    );
+  } 
     submitted = false;
-
-    onSubmit()
-    {
+    onSubmit() {
       this.submitted = true;
-      this.http.post('https://localhost:7169/api/User/reg', this.user)
-      .subscribe({
-        next: response => console.log('Регистрация прошла успешно: ' + response), 
-        error: err => console.log('Не удалось зарегистрироваться: ' + err),
-        });
+
+      if(this.registrationForm.valid)
+      {  
+        this.http.post('https://localhost:7169/api/User/reg', this.registrationForm.value)
+          .subscribe({
+            next: response => console.log('Response:', response),
+            error: (err: HttpErrorResponse) => {
+              console.error('Error Status:', err.status);
+              console.error('Error Message:', err.message);
+              console.error('Error Details:', err.error); 
+            },
+          });
+      }
+      
     }
+    
 }
