@@ -1,20 +1,30 @@
 <style>
-    input:invalid {
-      border: 2px solid red;
-    }
-  </style>
-  
+  input:invalid {
+    border: 2px solid red;
+  }
+</style>
+
+<div style="
+  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+">
+
   <div style="
-    background-color: #f2f2f2;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-family: 'Arial', sans-serif;
   ">
 
+    <!-- Buttons to switch between registration and authorization forms -->
+    <button (click)="showRegistrationForm()">Register</button>
+    <button (click)="showAuthorizationForm()">Login</button>
 
-    <form  [formGroup]="registrationForm" style="
+    <!-- Registration Form -->
+    <form *ngIf="isRegistrationFormVisible" [formGroup]="registrationForm" style="
       background-color: #ffffff;
       max-width: 400px;
       padding: 20px;
@@ -24,10 +34,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-    " >
-  
+    ">
+
       <h1 style="color: #333333;">Create an Account</h1>
-      
+
       <div class="input-container">     
         <input
           type="text"
@@ -80,7 +90,7 @@
           required
         />
       </div>
-  
+
       <button type="submit" style="
         background-color: #1E90FF;
         color: white;
@@ -90,7 +100,70 @@
         cursor: pointer;
         font-size: 16px;
         width: 100%;
-      "(click)="onSubmit()">Sign up</button>
-  
+      "(click)="onSubmitReg()">Sign up</button>
+
     </form>
-  </div>
+
+    <form *ngIf="isAuthorizationFormVisible" [formGroup]="authorizationForm" style="
+      background-color: #ffffff;
+      max-width: 400px;
+      padding: 20px;
+      border: 2px solid #333333;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    ">
+
+      <h1 style="color: #333333;">Login</h1>
+
+      <form  [formGroup]="authorizationForm" style="
+      background-color: #ffffff;
+      max-width: 400px;
+      padding: 20px;
+      border: 2px solid #333333;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    " >
+
+	<div class="input-container">      
+        <input
+          type="text"
+          id="phoneNumber"
+          placeholder="Phone number"
+          name="phoneNumber"
+          class="input"
+          formControlName="phoneNumber"
+          style="padding: 10px; box-sizing: border-box; border-radius: 5px; margin-bottom: 15px; width: 100%;"
+          required
+        />
+    </div>
+
+	<div class="input-container">
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          name="password"
+          class="input"
+          formControlName="password"
+          style="padding: 10px; box-sizing: border-box; border-radius: 5px; margin-bottom: 15px; width: 100%;"
+          required          
+        />
+    </div>
+      <button type="submit" style="
+        background-color: #1E90FF;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+      "(click)="onSubmitAuth()">Login</button>
+
+    </form>
