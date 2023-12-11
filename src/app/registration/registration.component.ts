@@ -41,6 +41,7 @@ export class RegAndAuthComponent
     submitted = false;
     onSubmitReg() 
     {
+      console.log('Submitting registration form');
       this.submitted = true;
 
       if(this.registrationForm.valid)
@@ -54,6 +55,7 @@ export class RegAndAuthComponent
     }
     onSubmitAuth()
     {
+      console.log('Submitting authorization form');
       this.submitted = true;
       if(this.authorizationForm.valid)
       {
