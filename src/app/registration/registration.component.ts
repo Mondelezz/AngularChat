@@ -25,7 +25,7 @@ export class RegAndAuthComponent
     this.registrationForm = new FormGroup(
       {
         userName: new FormControl('', Validators.required),
-        phoneNumber: new FormControl('', [Validators.required, Validators.pattern("[0-9]{10}")]),
+        phoneNumber: new FormControl('', Validators.required),
         password: new FormControl('', Validators.required),
         confirmPassword: new FormControl('', Validators.required)
       }
@@ -33,7 +33,7 @@ export class RegAndAuthComponent
 
     this.authorizationForm = new FormGroup(
       {
-        phoneNumber: new FormControl('', [Validators.required, Validators.pattern("[0-9]{10}")]),
+        phoneNumber: new FormControl('', Validators.required),
         password: new FormControl('', Validators.required),
       }
     );
@@ -52,6 +52,10 @@ export class RegAndAuthComponent
             error: this.handleHttpError
           });
       }
+      else
+      {
+        console.log('error valid form');
+      }
     }
     onSubmitAuth()
     {
@@ -64,6 +68,10 @@ export class RegAndAuthComponent
           next: response => console.log('Response:', response),
           error: this.handleHttpError
         });
+      }
+      else
+      {
+        console.log('error valid form');
       }
     }
 
