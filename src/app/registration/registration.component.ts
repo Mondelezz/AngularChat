@@ -5,11 +5,12 @@ import { FormGroup, FormsModule, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import { LobbyComponent } from '../lobby/lobby.component';
 @Component({
   selector: 'app-reg',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterOutlet, FormsModule, ReactiveFormsModule, LobbyComponent],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
 })
@@ -22,7 +23,7 @@ export class RegAndAuthComponent
   authorizationForm: FormGroup;
   isRegistrationFormVisible = true;
   isAuthorizationFormVisible = false;
-  constructor(private http: HttpClient)
+  constructor(private http: HttpClient, private router: Router)
   {
     this.invalidLogin = true;
     this.registrationForm = new FormGroup(
@@ -76,7 +77,8 @@ export class RegAndAuthComponent
            {
               console.log('Raw response:', response);
               localStorage.setItem("jwt", response);
-              this.invalidLogin = false;                     
+              this.invalidLogin = false;  
+              this.router.navigate(['lobby']);                           
            },
           error: (err: HttpErrorResponse) => 
           {

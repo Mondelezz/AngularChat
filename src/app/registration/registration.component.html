@@ -7,6 +7,7 @@
     height: 100vh;
     font-family: 'Arial', sans-serif;
 ">
+
   <img src="/assets/nout.jpg"style="
         position: absolute;
         width: 100%;
@@ -160,6 +161,9 @@
         box-shadow: 0 0 10px #1E90FF;
         font-size: 16px;
         width: 100%;
-      "(click)="onSubmitAuth()">Login</button>
+      "(click)="onSubmitAuth()" >Login</button>
 
-    </form>
+    </form>    
+    <router-outlet>
+      
+    </router-outlet>
