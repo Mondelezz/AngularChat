@@ -18,14 +18,14 @@ import { LobbyComponent } from '../lobby/lobby.component';
 export class RegAndAuthComponent
  {
   title = 'Registration';
-  invalidLogin: boolean;
+  isAuthenticated : boolean;
   registrationForm: FormGroup;
   authorizationForm: FormGroup;
   isRegistrationFormVisible = true;
   isAuthorizationFormVisible = false;
   constructor(private http: HttpClient, private router: Router)
   {
-    this.invalidLogin = true;
+    this.isAuthenticated = false;
     this.registrationForm = new FormGroup(
       {
         userName: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
@@ -77,12 +77,13 @@ export class RegAndAuthComponent
            {
               console.log('Raw response:', response);
               localStorage.setItem("jwt", response);
-              this.invalidLogin = false;  
+              this.isAuthenticated = true;  
               this.router.navigate(['lobby']);                           
            },
           error: (err: HttpErrorResponse) => 
           {
-              this.invalidLogin = true;
+              this.isAuthenticated = false;
+              this.router.navigate(['home']);
               console.error('Error:', err);
           },
         });        

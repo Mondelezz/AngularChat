@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+
+interface user 
+{
+  userName: string,
+  phoneNumber: string
+}
 
 @Component({
   selector: 'app-lobby',
@@ -8,6 +15,16 @@ import { CommonModule } from '@angular/common';
   templateUrl: './lobby.component.html',
   styleUrl: './lobby.component.scss'
 })
-export class LobbyComponent {
 
+export class LobbyComponent {
+  
+  constructor(private http: HttpClient )
+  {    
+  }
+  submitted = false;
+  onSubmit()
+  {
+    this.submitted = true;
+    
+  }
 }
